@@ -1,0 +1,38 @@
+{% extends 'cloud/base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+
+      <div class="row">
+
+        {% for album in albums %}
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+
+              <div class="jumbotron " style="background-image: url('{% static "sound/images/background.png"%}')";>
+                <div class="container card">
+                  <div class="logo">
+                      <img src="{{ album.logo.url }}" class="img-responsive imglogo" alt="Image">
+                  </div>
+                  <p>{{ album.title }}</p>
+                  <p></p>
+                  <p>
+                      <a href="{% url 'cloud:detail' pk=album.pk %}"><button type="button" class="btn btn-primary btn-circle"><i class="glyphicon glyphicon-list"></i></button></a>
+
+                      <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-heart"></i></button>
+                      <a href="{% url 'cloud:delete_album' pk=album.pk %}"><button type="button" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button></a>
+
+                  </p>
+                </div>
+              </div>
+
+          </div>
+       {% endfor %}
+      </div>
+  </div>
+
+{% endblock %}

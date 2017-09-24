@@ -1,0 +1,18 @@
+{% extends 'cloud/base.html' %}
+{% block title %}
+login
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Add">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

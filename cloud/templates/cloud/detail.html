@@ -1,0 +1,90 @@
+
+{% extends 'cloud/base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Albums
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+
+      <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              <!-- album detail -->
+              <div class="jumbotron ">
+                <div class="container card">
+                  <div class="logo">
+                      <img src="{{ album.logo.url }}" class="img-responsive imglogo" alt="Image">
+                  </div>
+                  <p>{{ album.title }}</p>
+
+
+
+                </div>
+              </div>
+          </div>
+          <div class="container">
+              <a href="{% url 'cloud:create_song' pk=album.pk %}">
+                  <button type="submit" class="btn btn-primary">Add new Song</button>
+              </a>
+              <div class="jumbotron">
+                  <!-- songs -->
+
+
+
+
+
+
+                              <table class="table table-responsive"  style="width: 200px;">
+
+                                    <thead>
+                                      <tr>
+                                        <th style="background-color:#F3D1A5;border: #111111 solid 2px;">title</th>
+                                        <th style="background-color:#F3D1A5;border: #111111 solid 2px;">{{ album.title }}'s songs</th>
+                                      </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for song in album.songs %}
+
+
+
+                                            <tr>
+                                                <td style="background-color: deepskyblue;">
+                                                    {{ song.title }}
+                                                </td>
+
+                                                <td style="background-color: cadetblue;">
+                                                    <audio controls>
+                                                          <source src="{{ song.audio_file.url }}" type="audio/ogg">
+                                                          <source src="{{ song.audio_file.url }}" type="audio/mp3">
+                                                        <source src="{{ song.audio_file.url }}" type="audio/wav">
+
+                                                        Your browser does not support the audio element.
+                                                     </audio>
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+
+                                    </tbody>
+
+
+
+
+
+                              </table>
+
+
+
+
+
+
+              </div>
+          </div>
+      </div>
+  </div>
+
+{% endblock %}
